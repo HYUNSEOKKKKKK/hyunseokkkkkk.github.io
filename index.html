@@ -196,23 +196,28 @@
 
           <div class="research-architecture reveal" aria-labelledby="architecture-title">
             <div class="architecture-copy">
-              <p class="micro-label">Current direction</p>
-              <h3 id="architecture-title">A hierarchical, hybrid robot stack</h3>
-              <p>Model-based robotics and optimization provide structure; perception and learning provide adaptation. The goal is a system that carries intent all the way to reliable physical behavior.</p>
+              <p class="micro-label">Current research system</p>
+              <h3 id="architecture-title">Perception to planning to control</h3>
+              <p>My current implementations connect RGB-D perception, discrete-continuous planning, and learning-based control inside simulation and physical humanoid research workflows.</p>
             </div>
-            <div class="architecture-lanes" aria-label="Research approach">
+            <div class="architecture-lanes" aria-label="Perception, planning, and control research stack">
               <div class="architecture-lane">
-                <span>Structure</span>
-                <strong>Models + Optimization</strong>
+                <span>Perception</span>
+                <strong>RGB-D + visual features</strong>
               </div>
               <div class="lane-connector" aria-hidden="true"></div>
               <div class="architecture-lane">
-                <span>Adaptation</span>
-                <strong>Perception + Learning</strong>
+                <span>Planning</span>
+                <strong>GCS + MIP + graph search</strong>
+              </div>
+              <div class="lane-connector" aria-hidden="true"></div>
+              <div class="architecture-lane">
+                <span>Control</span>
+                <strong>Whole-body + learned policies</strong>
               </div>
               <div class="lane-output">
-                <span>Output</span>
-                <strong>Physical humanoid behavior</strong>
+                <span>Integrated objective</span>
+                <strong>Robust behavior on physical humanoid systems</strong>
               </div>
             </div>
           </div>
@@ -224,8 +229,8 @@
           <header class="section-heading reveal">
             <p class="section-index">02 / Selected Projects</p>
             <div>
-              <h2 id="projects-title">Research built for real robots.</h2>
-              <p>Selected directions across planning, perception, manipulation, and integrated humanoid systems.</p>
+              <h2 id="projects-title">Research built as working systems.</h2>
+              <p>Selected projects grounded in active implementations across optimization, perception, learning, and humanoid control.</p>
             </div>
           </header>
 
@@ -248,18 +253,18 @@
             </figure>
 
             <div class="project-copy">
-              <p class="micro-label">Planning &amp; Optimization</p>
+              <p class="micro-label">Featured / Planning &amp; Optimization</p>
               <h3>Humanoid Footstep Planning using Graphs of Convex Sets</h3>
-              <p>Optimization-based humanoid footstep planning using Graphs of Convex Sets, targeting high-quality plans without requiring an initial discrete path or initial continuous foot-placement values.</p>
+              <p>A discrete-continuous planning pipeline for humanoid footsteps using Graphs of Convex Sets, with implementations for terrain generation, relaxed-to-fixed optimization, and receding-horizon replanning.</p>
               <ul class="tag-list" aria-label="Project topics">
-                <li>Footstep planning</li>
                 <li>GCS</li>
-                <li>Optimization</li>
+                <li>Sliding-window replanning</li>
+                <li>Python + C++</li>
               </ul>
               <div class="project-actions" aria-label="Project resources">
                 <button type="button" disabled title="Paper link not available">Paper</button>
                 <button type="button" disabled title="arXiv link not available">arXiv</button>
-                <button type="button" disabled title="Code link not available">Code</button>
+                <button type="button" disabled title="Research repository is private">Private Code</button>
                 <button type="button" disabled title="Video link not available">Video</button>
                 <button type="button" disabled title="Project page not available">Project Page</button>
               </div>
@@ -276,44 +281,82 @@
                 <span class="visual-index">02</span>
               </div>
               <div class="project-card-body">
-                <p class="micro-label">Perception to Control</p>
-                <h3>Vision-based Humanoid Locomotion</h3>
-                <p>A hierarchical perception-to-control framework for humanoid locomotion, combining visual representations, environment understanding, high-level planning, and robot control.</p>
+                <p class="micro-label">RGB-D Perception / Sim-to-Real</p>
+                <h3>Foundation-model Foothold Perception</h3>
+                <p>A perception stack for selecting steppable footholds from onboard RGB-D sensing, using frozen visual and depth features with learned fusion across simulation and real-camera workflows.</p>
+                <ul class="tag-list card-tags" aria-label="Project topics">
+                  <li>RGB-D</li>
+                  <li>Feature fusion</li>
+                  <li>Foothold selection</li>
+                </ul>
               </div>
             </article>
 
             <article class="project-card reveal">
-              <div class="project-visual media-manipulation" aria-hidden="true">
-                <span class="palm"></span>
-                <span class="finger finger-1"></span>
-                <span class="finger finger-2"></span>
-                <span class="finger finger-3"></span>
-                <span class="finger finger-4"></span>
-                <span class="sensor sensor-1"></span>
-                <span class="sensor sensor-2"></span>
-                <span class="sensor sensor-3"></span>
+              <div class="project-visual media-control" aria-hidden="true">
+                <span class="control-path"></span>
+                <span class="control-foot control-foot-a"></span>
+                <span class="control-foot control-foot-b"></span>
+                <span class="control-foot control-foot-c"></span>
+                <span class="policy-node policy-node-a"></span>
+                <span class="policy-node policy-node-b"></span>
+                <span class="policy-node policy-node-c"></span>
                 <span class="visual-index">03</span>
               </div>
               <div class="project-card-body">
-                <p class="micro-label">Physical Interaction</p>
-                <h3>Humanoid Dexterous Manipulation</h3>
-                <p>Humanoid hand control, fingertip sensing, grasping, and manipulation toward whole-body physical interaction.</p>
+                <p class="micro-label">Control / Reinforcement Learning</p>
+                <h3>Learning-based Footstep Tracking</h3>
+                <p>A RaiSim-based PPO controller for tracking commanded foot positions and yaw while balancing contact, smoothness, body orientation, and constraint-related objectives.</p>
+                <ul class="tag-list card-tags" aria-label="Project topics">
+                  <li>PPO</li>
+                  <li>RaiSim</li>
+                  <li>Foot tracking</li>
+                </ul>
               </div>
             </article>
 
             <article class="project-card reveal">
-              <div class="project-visual media-hardware" aria-hidden="true">
-                <span class="actuator-ring ring-1"></span>
-                <span class="actuator-ring ring-2"></span>
-                <span class="actuator-core"></span>
-                <span class="hardware-line line-a"></span>
-                <span class="hardware-line line-b"></span>
+              <div class="project-visual media-humanoid-stack" aria-hidden="true">
+                <span class="depth-field"></span>
+                <span class="stack-node stack-node-sense"></span>
+                <span class="stack-node stack-node-memory"></span>
+                <span class="stack-node stack-node-policy"></span>
+                <span class="stack-connector stack-connector-a"></span>
+                <span class="stack-connector stack-connector-b"></span>
                 <span class="visual-index">04</span>
               </div>
               <div class="project-card-body">
-                <p class="micro-label">Integrated Systems</p>
-                <h3>High-performance Humanoid Platform</h3>
-                <p>Development and integration of humanoid actuators, lower-body hardware, sensing, embedded systems, and locomotion controllers.</p>
+                <p class="micro-label">Humanoid Learning Stack</p>
+                <h3>Depth-aware Humanoid Locomotion</h3>
+                <p>A recurrent policy stack combining proprioception and onboard depth observations, supported by reusable humanoid, biped, and hopping-leg simulation environments.</p>
+                <ul class="tag-list card-tags" aria-label="Project topics">
+                  <li>Depth encoder</li>
+                  <li>Recurrent policy</li>
+                  <li>Humanoid simulation</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-visual media-generative" aria-hidden="true">
+                <span class="terrain-stone terrain-stone-a"></span>
+                <span class="terrain-stone terrain-stone-b"></span>
+                <span class="terrain-stone terrain-stone-c"></span>
+                <span class="terrain-stone terrain-stone-d"></span>
+                <span class="terrain-route"></span>
+                <span class="latent-ring latent-ring-a"></span>
+                <span class="latent-ring latent-ring-b"></span>
+                <span class="visual-index">05</span>
+              </div>
+              <div class="project-card-body">
+                <p class="micro-label">Generative Models / Planning Studies</p>
+                <h3>Terrain Generation &amp; Planning Benchmarks</h3>
+                <p>Conditional stepping-stone generation paired with comparative footstep-planning implementations spanning GCS, mixed-integer optimization, and A* graph search.</p>
+                <ul class="tag-list card-tags" aria-label="Project topics">
+                  <li>CVAE</li>
+                  <li>MIQCQP</li>
+                  <li>A*</li>
+                </ul>
               </div>
             </article>
           </div>

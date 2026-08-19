@@ -53,6 +53,15 @@ Do not add a venue, acceptance status, DOI, author, or resource URL until it is 
 
 Use `projects/project-slug/index.html` for a dedicated project page. The `projects/README.md` file records the expected path convention.
 
+### Private research repositories
+
+Several project descriptions are derived from private research implementations. Keep those repositories private unless they have been reviewed for release. On the public website:
+
+1. Describe only research goals, methods, and systems that are safe to disclose.
+2. Do not link visitors to a private repository.
+3. Keep the code control disabled or label it as private until a public release exists.
+4. Review images, videos, datasets, benchmark numbers, and paper status before publishing them.
+
 ## Replace the profile image
 
 The About section currently uses the public GitHub avatar URL. To use a local portrait:
