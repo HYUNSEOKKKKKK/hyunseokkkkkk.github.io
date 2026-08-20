@@ -65,8 +65,9 @@
   setHeaderState();
 
   const setActiveLink = (sectionId) => {
+    const navigationId = sectionId === "platforms" ? "research" : sectionId;
     navLinks.forEach((link) => {
-      const isActive = link.getAttribute("href") === `#${sectionId}`;
+      const isActive = link.getAttribute("href") === `#${navigationId}`;
       if (isActive) {
         link.setAttribute("aria-current", "location");
       } else {

@@ -27,16 +27,16 @@
     <meta property="og:url" content="https://hyunseokkkkkk.github.io/">
     <meta
       property="og:image"
-      content="https://hyunseokkkkkk.github.io/assets/images/hero-humanoid.jpg"
+      content="https://hyunseokkkkkk.github.io/assets/images/robots/toro-footstep-planning.jpg"
     >
     <meta
       property="og:image:alt"
-      content="A research humanoid robot walking in a robotics laboratory"
+      content="TORO humanoid robot during a footstep control experiment at DLR"
     >
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/images/hero-humanoid.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="assets/images/robots/toro-footstep-planning.jpg" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/main.js" defer></script>
   </head>
@@ -81,12 +81,27 @@
       <section class="hero" id="home" aria-labelledby="hero-title" data-section>
         <div class="hero-media" aria-hidden="true">
           <img
-            src="assets/images/hero-humanoid.jpg"
+            class="hero-primary-image"
+            src="assets/images/robots/toro-footstep-planning.jpg"
             alt=""
-            width="1672"
-            height="941"
+            width="979"
+            height="554"
             fetchpriority="high"
           >
+          <div class="hero-media-tag">
+            <span>Direct research platform</span>
+            <strong>TORO / Humanoid</strong>
+          </div>
+          <div class="hero-secondary-media">
+            <img
+              src="assets/images/robots/marvel-climbing.jpg"
+              alt=""
+              width="1900"
+              height="731"
+              decoding="async"
+            >
+            <p><span>MARVEL</span> Magnetic climbing platform</p>
+          </div>
         </div>
         <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -112,7 +127,7 @@
           </div>
         </div>
 
-        <a class="scroll-cue" href="#research-loop" aria-label="Continue to research overview">
+        <a class="scroll-cue" href="#platforms" aria-label="Continue to robot platforms">
           <span>Explore</span>
           <span class="scroll-line" aria-hidden="true"></span>
         </a>
@@ -140,10 +155,72 @@
         </div>
       </section>
 
+      <section class="section platforms-section" id="platforms" aria-labelledby="platforms-title" data-section>
+        <div class="container">
+          <header class="section-heading reveal">
+            <p class="section-index">01 / Robot Platforms</p>
+            <div>
+              <h2 id="platforms-title">Research grounded in physical robots.</h2>
+              <p>My primary hands-on platforms are TORO and MARVEL. KAIST Humanoid and HOUND 1 &amp; 2 are part of the wider DRCD Lab environment and are shown separately to reflect indirect involvement.</p>
+            </div>
+          </header>
+
+          <div class="platform-grid">
+            <article class="platform-panel platform-panel-toro reveal">
+              <img
+                src="assets/images/robots/toro-hero.jpg"
+                alt="TORO humanoid robot standing over interactive footstep markers during an experiment at DLR"
+                width="1400"
+                height="2100"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="platform-caption">
+                <p class="micro-label">Direct research platform / DLR</p>
+                <h3>TORO</h3>
+                <p>Humanoid locomotion, footstep planning, control, and physical experiments during my 2025 research stay at DLR.</p>
+              </div>
+            </article>
+
+            <article class="platform-panel platform-panel-marvel reveal">
+              <img
+                src="assets/images/robots/marvel-climbing.jpg"
+                alt="MARVEL magnetic legged robot traversing an uneven vertical ferromagnetic surface"
+                width="1900"
+                height="731"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="platform-caption">
+                <p class="micro-label">Direct research platform / KAIST</p>
+                <h3>MARVEL</h3>
+                <p>Magnetic legged locomotion and adaptive contact hardware for movement across irregular ferromagnetic surfaces.</p>
+              </div>
+            </article>
+
+            <article class="platform-panel platform-panel-lab reveal">
+              <img
+                src="assets/images/robots/kaist-lab-platforms.jpg"
+                alt="KAIST Humanoid centered between two HOUND quadruped robots"
+                width="1800"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="platform-caption">
+                <p class="micro-label">Lab platforms / Indirect involvement</p>
+                <h3>KAIST Humanoid + HOUND 1 &amp; 2</h3>
+                <p>Platforms in the DRCD Lab research environment that extend my exposure to humanoid and quadruped hardware, control, and system integration.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section research-section" id="research" aria-labelledby="research-title" data-section>
         <div class="container">
           <header class="section-heading reveal">
-            <p class="section-index">01 / Research</p>
+            <p class="section-index">02 / Research</p>
             <div>
               <h2 id="research-title">Closing the loop on physical intelligence.</h2>
               <p>My work spans the algorithms, sensing, control, and hardware required for humanoid robots to operate in complex real-world environments.</p>
@@ -227,28 +304,27 @@
       <section class="section projects-section" id="projects" aria-labelledby="projects-title" data-section>
         <div class="container">
           <header class="section-heading reveal">
-            <p class="section-index">02 / Selected Projects</p>
+            <p class="section-index">03 / Selected Projects</p>
             <div>
               <h2 id="projects-title">Research built as working systems.</h2>
-              <p>Selected projects grounded in active implementations across optimization, perception, learning, and humanoid control.</p>
+              <p>Selected projects grounded in active implementations across optimization, perception, learning, robot hardware, and physical experiments.</p>
             </div>
           </header>
 
           <!-- PROJECT ITEM: duplicate this article to add another featured project. -->
-          <article class="featured-project reveal">
-            <figure class="project-media media-footsteps">
-              <div class="coordinate-label coordinate-x">x</div>
-              <div class="coordinate-label coordinate-y">y</div>
-              <span class="footstep step-1" aria-hidden="true"></span>
-              <span class="footstep step-2" aria-hidden="true"></span>
-              <span class="footstep step-3" aria-hidden="true"></span>
-              <span class="footstep step-4" aria-hidden="true"></span>
-              <span class="footstep step-5" aria-hidden="true"></span>
-              <span class="planning-region region-1" aria-hidden="true"></span>
-              <span class="planning-region region-2" aria-hidden="true"></span>
+          <article class="featured-project reveal" id="gcs-project">
+            <figure class="project-media project-media-photo">
+              <img
+                src="assets/images/robots/toro-footstep-planning.jpg"
+                alt="TORO humanoid robot stepping across interactive footstep targets"
+                width="979"
+                height="554"
+                loading="lazy"
+                decoding="async"
+              >
               <figcaption>
-                <span>Project visual / 01</span>
-                <strong>Graphs of Convex Sets</strong>
+                <span>TORO / Physical experiment</span>
+                <strong>Footstep Planning</strong>
               </figcaption>
             </figure>
 
@@ -265,6 +341,50 @@
                 <button type="button" disabled title="Paper link not available">Paper</button>
                 <button type="button" disabled title="arXiv link not available">arXiv</button>
                 <button type="button" disabled title="Research repository is private">Private Code</button>
+                <button type="button" disabled title="Video link not available">Video</button>
+                <button type="button" disabled title="Project page not available">Project Page</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="featured-project reveal" id="marvel-project">
+            <figure class="project-media project-media-photo marvel-project-media">
+              <div class="marvel-media-stack">
+                <img
+                  src="assets/images/robots/marvel-adaptive-contact.jpg"
+                  alt="Adaptive magnetic foot conforming to curved and stepped ferromagnetic surfaces"
+                  width="1600"
+                  height="523"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <img
+                  src="assets/images/robots/marvel-climbing.jpg"
+                  alt="MARVEL traversing an uneven vertical ferromagnetic surface"
+                  width="1900"
+                  height="731"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <figcaption>
+                <span>MARVEL / Hardware experiment</span>
+                <strong>Adaptive Magnetic Contact</strong>
+              </figcaption>
+            </figure>
+
+            <div class="project-copy">
+              <p class="micro-label">Featured / Legged Robot Hardware</p>
+              <h3>Adaptive Magnetic Foot for MARVEL</h3>
+              <p>Design and robot-level validation of a magnetic foot that combines multiple miniaturized electro-permanent magnets with a differential ankle mechanism for distributed contact on curved, stepped, and protruded ferromagnetic surfaces.</p>
+              <ul class="tag-list" aria-label="Project topics">
+                <li>Magnetic adhesion</li>
+                <li>Adaptive contact</li>
+                <li>Mechanism design</li>
+              </ul>
+              <div class="project-actions" aria-label="Project resources">
+                <button type="button" disabled title="Public paper link not available">Paper</button>
+                <button type="button" disabled title="Code is not publicly available">Private Code</button>
                 <button type="button" disabled title="Video link not available">Video</button>
                 <button type="button" disabled title="Project page not available">Project Page</button>
               </div>
@@ -366,7 +486,7 @@
       <section class="section publications-section" id="publications" aria-labelledby="publications-title" data-section>
         <div class="container">
           <header class="section-heading reveal">
-            <p class="section-index">03 / Publications</p>
+            <p class="section-index">04 / Publications</p>
             <div>
               <h2 id="publications-title">Publications</h2>
               <p>Research outputs and supporting resources. Publication details are listed only when verified.</p>
@@ -419,9 +539,10 @@
           </div>
 
           <div class="about-copy reveal">
-            <p class="section-index">04 / About</p>
+            <p class="section-index">05 / About</p>
             <h2 id="about-title">From algorithms to experiments.</h2>
             <p>I am a Ph.D. candidate in Mechanical Engineering at KAIST and a member of the Dynamic Robot Control &amp; Design Lab. My research focuses on humanoid robotics, particularly the connection between motion planning, whole-body control, perception, learning, and physical robot systems.</p>
+            <p>In 2025, I was a visiting researcher at the German Aerospace Center (DLR), where I worked on humanoid locomotion with TORO.</p>
             <p>I am interested in research that closes the loop from algorithmic ideas to real robot experiments.</p>
 
             <dl class="affiliation-list">
@@ -446,21 +567,67 @@
         </div>
       </section>
 
-      <section class="cv-section" id="cv" aria-labelledby="cv-title" data-section>
-        <div class="container cv-inner reveal">
-          <div>
-            <p class="section-index">05 / Curriculum Vitae</p>
-            <h2 id="cv-title">CV</h2>
-            <p>A downloadable curriculum vitae will be available here.</p>
+      <section class="section cv-section" id="cv" aria-labelledby="cv-title" data-section>
+        <div class="container">
+          <header class="cv-heading reveal">
+            <div>
+              <p class="section-index">06 / Curriculum Vitae</p>
+              <h2 id="cv-title">Experience &amp; education</h2>
+              <p>A concise web CV based on verified records. The downloadable PDF will be enabled after the updated document is added.</p>
+            </div>
+            <button class="button button-disabled" type="button" disabled title="Updated CV PDF has not been added yet">CV PDF / Update pending</button>
+          </header>
+
+          <div class="cv-grid">
+            <div class="cv-column reveal">
+              <p class="micro-label">Experience</p>
+              <article class="cv-entry">
+                <p class="cv-date">Feb 2025 - Present</p>
+                <div>
+                  <h3>Ph.D. Candidate in Mechanical Engineering</h3>
+                  <p class="cv-organization">KAIST / Dynamic Robot Control &amp; Design Lab</p>
+                  <p>Research on humanoid locomotion, planning, whole-body control, perception, learning, and physical robot systems.</p>
+                </div>
+              </article>
+              <article class="cv-entry">
+                <p class="cv-date">Mar 2025 - Dec 2025</p>
+                <div>
+                  <h3>Visiting Researcher</h3>
+                  <p class="cv-organization">German Aerospace Center (DLR) / Institute of Robotics and Mechatronics</p>
+                  <p>Humanoid locomotion research with TORO, spanning planning, control, and real-robot experiments.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="cv-column reveal">
+              <p class="micro-label">Education</p>
+              <article class="cv-entry">
+                <p class="cv-date">Mar 2023 - Feb 2025</p>
+                <div>
+                  <h3>M.S. in Mechanical Engineering</h3>
+                  <p class="cv-organization">KAIST</p>
+                </div>
+              </article>
+              <article class="cv-entry">
+                <p class="cv-date">Mar 2015 - Feb 2023</p>
+                <div>
+                  <h3>B.S. in Mechanical Engineering</h3>
+                  <p class="cv-organization">KAIST</p>
+                </div>
+              </article>
+              <div class="cv-skills">
+                <p class="cv-date">Technical tools</p>
+                <p>Python / C++ / MATLAB / SolidWorks</p>
+              </div>
+            </div>
           </div>
-          <button class="button button-disabled" type="button" disabled title="CV PDF has not been added yet">Download CV</button>
         </div>
       </section>
 
       <section class="section contact-section" id="contact" aria-labelledby="contact-title" data-section>
         <div class="container contact-layout">
           <div class="contact-intro reveal">
-            <p class="section-index">06 / Contact</p>
+            <p class="section-index">07 / Contact</p>
             <h2 id="contact-title">Let's discuss humanoid robotics.</h2>
             <p>For research conversations, collaboration, or professional inquiries, email is the best way to reach me.</p>
             <a class="contact-email" href="mailto:hyunseak@kaist.ac.kr">hyunseak@kaist.ac.kr<span aria-hidden="true">&#8599;</span></a>

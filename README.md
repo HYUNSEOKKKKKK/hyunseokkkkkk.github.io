@@ -12,7 +12,8 @@ Live URL: [https://hyunseokkkkkk.github.io](https://hyunseokkkkkk.github.io)
 |-- assets/
 |   |-- css/styles.css            # Responsive layout and visual system
 |   |-- js/main.js                # Navigation, active links, and reveal behavior
-|   |-- images/                   # Hero, favicon, and future media
+|   |-- images/robots/            # Optimized TORO, MARVEL, and KAIST lab media
+|   |-- images/                   # Favicon, profile, and future media
 |   `-- cv/                       # CV PDF destination
 |-- projects/                     # Future dedicated project pages
 |-- .github/workflows/pages.yml   # GitHub Pages deployment
@@ -22,6 +23,18 @@ Live URL: [https://hyunseokkkkkk.github.io](https://hyunseokkkkkk.github.io)
 ```
 
 The site has no framework, package manager, build step, or third-party JavaScript dependency.
+
+## Update robot platforms and images
+
+The `#platforms` section in `index.html` separates direct research platforms from platforms encountered indirectly in the DRCD Lab environment.
+
+1. Add public, web-optimized media under `assets/images/robots/`.
+2. Update the matching `<img>` path, intrinsic `width` and `height`, and descriptive `alt` text in `index.html`.
+3. Keep TORO and MARVEL labeled as direct research platforms unless that relationship changes.
+4. Keep KAIST Humanoid and HOUND labeled as lab platforms / indirect involvement.
+5. Update the hero preload and Open Graph image when changing the primary hero image.
+
+Do not commit raw experimental datasets, internal slide decks, personal documents, or media that has not been cleared for public release.
 
 ## Run locally
 
@@ -72,8 +85,11 @@ The About section currently uses the public GitHub avatar URL. To use a local po
 
 ## Add the CV
 
-1. Add the PDF at `assets/cv/Hyunseok_Kim_CV.pdf`.
+The web CV is maintained directly in the `#cv` section of `index.html`. Update its experience and education entries whenever dates or positions change.
+
+1. Add the updated PDF at `assets/cv/Hyunseok_Kim_CV.pdf`.
 2. Replace the disabled button in the `#cv` section with the link shown in `assets/cv/README.md`.
+3. Confirm the PDF contains no personal information that should remain private before publishing it.
 
 Until the PDF exists, the website deliberately shows a disabled CV button and does not create a broken link.
 
