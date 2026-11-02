@@ -2,7 +2,7 @@
 
 Live site: https://hyunseokkkkkk.github.io/
 
-A static academic homepage with a short About, four recorded highlights, news,
+A static academic homepage with a short About, six recorded highlights, news,
 and a filterable list of five research projects. The layout follows the light,
 compact academic format of [Xuxin Cheng's homepage](https://xuxin.ai/).
 All research descriptions, photos, and recordings refer to Hyunseok's projects
@@ -24,7 +24,7 @@ through `.github/workflows/pages.yml` whenever `main` changes.
 ## Content and media
 
 The featured projects are GCS footstep planning, PiPER manipulation, Hopper,
-KAIST Humanoid, and MARVEL's adaptive magnetic foot. Four video highlights
+KAIST Humanoid, and MARVEL's adaptive magnetic foot. Six video highlights
 appear above the detailed research rows. All abstract decorative diagrams have
 been removed.
 
@@ -37,7 +37,8 @@ been removed.
   20–34 second preview segment. The player is revealed only after playback
   starts, so the lab photograph and direct YouTube link remain available when
   an embed cannot play.
-- MARVEL uses the existing adaptive-foot and robot-experiment photographs.
+- MARVEL includes the official DRCD Lab climbing video (2022), with a 10–26 second preview. The adaptive-foot project retains its own photographs; the official lab demo is labelled separately.
+- A second Hopper highlight shows the indoor trial, source interval 20–30 seconds at 1×, with a rolling test frame and nearby operators.
 
 Previews pause off screen and when the tab is hidden. The global preview toggle
 and the visitor's reduced-motion preference are respected. Image posters and

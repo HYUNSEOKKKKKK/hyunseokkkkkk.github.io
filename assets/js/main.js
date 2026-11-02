@@ -2,66 +2,78 @@
   "use strict";
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const videos = [...document.querySelectorAll(".preview-video")];
-  const youtube = document.querySelector("[data-youtube-preview]");
+  const youtubePreviews = [...document.querySelectorAll("[data-youtube-preview]")].map(element => ({
+    element, player:null, ready:false, requested:false, unavailable:false, visible:false, timer:null
+  }));
+  const youtubeByElement = new Map(youtubePreviews.map(state => [state.element, state]));
   const mediaToggle = document.querySelector("[data-media-toggle]");
   let paused = motion.matches;
-  let player = null;
-  let playerReady = false;
   let apiRequested = false;
-  let youtubeUnavailable = false;
-  let youtubeVisible = false;
 
-  function command(func) {
-    if (playerReady && typeof player?.[func] === "function") player[func]();
+  function command(state, func) {
+    if (state.ready && typeof state.player?.[func] === "function") state.player[func]();
   }
-  function mountYouTube() {
-    if (!youtube || player) return;
-    const showFallback = () => {
-      if (youtube.classList.contains("has-player")) return;
-      youtubeUnavailable = true;
-      const button = youtube.querySelector("[data-youtube-play]");
-      button.textContent = "Watch on YouTube ↗";
-      button.setAttribute("aria-label", "Watch the KAIST Humanoid video on YouTube");
-    };
+  function showFallback(state) {
+    if (state.element.classList.contains("has-player")) return;
+    state.unavailable = true;
+    const button = state.element.querySelector("[data-youtube-play]");
+    button.textContent = "Watch on YouTube ↗";
+    button.setAttribute("aria-label", "Watch the " + state.element.dataset.videoTitle + " video on YouTube");
+  }
+  function shouldPlay(state) {
+    return !paused && state.visible && !document.hidden;
+  }
+  function mountYouTube(state) {
+    if (state.player) return;
+    state.requested = true;
+    if (!state.timer) state.timer = window.setTimeout(() => showFallback(state), 15000);
     if (!window.YT?.Player) {
-      if (apiRequested) return;
-      apiRequested = true;
-      window.onYouTubeIframeAPIReady = mountYouTube;
-      const script = document.createElement("script");
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      script.addEventListener("error", showFallback);
-      document.head.append(script);
-      window.setTimeout(showFallback, 15000);
+      if (!apiRequested) {
+        apiRequested = true;
+        window.onYouTubeIframeAPIReady = () => youtubePreviews.filter(item => item.requested).forEach(mountYouTube);
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        script.addEventListener("error", () => youtubePreviews.filter(item => item.requested).forEach(showFallback));
+        document.head.append(script);
+      }
       return;
     }
     const mount = document.createElement("div");
-    youtube.prepend(mount);
-    const clip = {videoId:youtube.dataset.videoId, startSeconds:Number(youtube.dataset.start), endSeconds:Number(youtube.dataset.end)};
-    player = new window.YT.Player(mount, {
+    state.element.prepend(mount);
+    const clip = {
+      videoId:state.element.dataset.videoId,
+      startSeconds:Number(state.element.dataset.start),
+      endSeconds:Number(state.element.dataset.end)
+    };
+    state.player = new window.YT.Player(mount, {
       host:"https://www.youtube-nocookie.com", videoId:clip.videoId,
       playerVars:{autoplay:1, mute:1, controls:1, playsinline:1, rel:0, start:clip.startSeconds, end:clip.endSeconds, origin:location.origin},
       events:{
         onReady(event) {
-          playerReady = true;
-          event.target.getIframe().title = "KAIST Humanoid v0.7 — official DRCD Lab field-test preview";
+          state.ready = true;
+          event.target.getIframe().title = state.element.dataset.videoTitle + " — official DRCD Lab preview";
           event.target.mute();
-          if (!paused && youtubeVisible && !document.hidden) event.target.playVideo();
+          if (shouldPlay(state)) event.target.playVideo();
+          else event.target.pauseVideo();
         },
         onStateChange(event) {
           if (event.data === window.YT.PlayerState.PLAYING) {
-            youtubeUnavailable = false;
-            youtube.classList.add("has-player");
+            if (!shouldPlay(state)) {
+              event.target.pauseVideo();
+              return;
+            }
+            state.unavailable = false;
+            state.element.classList.add("has-player");
           }
-          if (event.data === window.YT.PlayerState.ENDED && !paused && youtubeVisible) event.target.loadVideoById(clip);
+          if (event.data === window.YT.PlayerState.ENDED && shouldPlay(state)) event.target.loadVideoById(clip);
         },
         onError() {
-          youtube.classList.remove("has-player");
-          showFallback();
+          state.element.classList.remove("has-player");
+          showFallback(state);
         }
       }
     });
-    window.setTimeout(showFallback, 15000);
   }
   function syncVideo(video) {
     if (paused || document.hidden || video.dataset.visible !== "true") video.pause();
@@ -69,8 +81,12 @@
   }
   function syncAll() {
     videos.forEach(syncVideo);
-    if (!paused && !document.hidden && youtubeVisible) { mountYouTube(); command("playVideo"); }
-    else command("pauseVideo");
+    youtubePreviews.forEach(state => {
+      if (shouldPlay(state)) {
+        mountYouTube(state);
+        command(state, "playVideo");
+      } else command(state, "pauseVideo");
+    });
     mediaToggle.textContent = paused ? "Play previews" : "Pause previews";
     mediaToggle.setAttribute("aria-pressed", String(paused));
   }
@@ -87,24 +103,25 @@
   });
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.target === youtube) { youtubeVisible = entry.isIntersecting; syncAll(); }
+      const state = youtubeByElement.get(entry.target);
+      if (state) { state.visible = entry.isIntersecting; syncAll(); }
       else { entry.target.dataset.visible = String(entry.isIntersecting); syncVideo(entry.target); }
     }), {threshold:.25});
     videos.forEach(video => observer.observe(video));
-    if (youtube) observer.observe(youtube);
+    youtubePreviews.forEach(state => observer.observe(state.element));
   } else {
     videos.forEach(video => { video.dataset.visible = "true"; syncVideo(video); });
   }
-  document.querySelector("[data-youtube-play]")?.addEventListener("click", () => {
-    if (youtubeUnavailable) {
-      window.open("https://www.youtube.com/watch?v=" + youtube.dataset.videoId, "_blank", "noopener,noreferrer");
+  youtubePreviews.forEach(state => state.element.querySelector("[data-youtube-play]")?.addEventListener("click", () => {
+    if (state.unavailable) {
+      window.open("https://www.youtube.com/watch?v=" + state.element.dataset.videoId, "_blank", "noopener,noreferrer");
       return;
     }
-    youtubeVisible = true;
+    state.visible = true;
     paused = false;
-    mountYouTube();
+    mountYouTube(state);
     syncAll();
-  });
+  }));
   mediaToggle?.addEventListener("click", () => { paused = !paused; syncAll(); });
   motion.addEventListener("change", event => { paused = event.matches; syncAll(); });
   document.addEventListener("visibilitychange", syncAll);

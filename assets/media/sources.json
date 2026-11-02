@@ -45,5 +45,24 @@
     "file": "assets/media/gcs-preview.mp4",
     "size_bytes": 1414448,
     "sha256": "22943f2c31a41f3c194d59eef7484b68ba1e591c327be9314605931a99cbff54"
+  },
+  "marvel_climbing_video": {
+    "source": "https://www.youtube.com/watch?v=sxOgYz13t5I",
+    "source_confirmation": "https://www.dynamicrobot.kaist.ac.kr/news",
+    "description": "Official DRCD Lab video for Agile and versatile climbing on ferromagnetic surfaces with a quadrupedal robot (Science Robotics, 2022). YouTube preview interval 10–26 seconds. Labelled as a lab demonstration, distinct from the author’s adaptive MME-DAM foot experiment."
+  },
+  "hopper_indoor": {
+    "source": "https://github.com/HYUNSEOKKKKKK/Hopper_Nature/blob/withDHALOneLeg/assets/demos/indoor-trial.mp4",
+    "description": "Recorded indoor trial with a rolling test frame and nearby operators. Original 20–30 second interval, 1× speed, muted H.264 at 640-pixel width. Poster extracted at preview time 3 seconds."
+  },
+  "hopper-indoor-preview": {
+    "file": "assets/media/hopper-indoor-preview.mp4",
+    "size_bytes": 347292,
+    "sha256": "73d77678a7a54da845a3ef22e8e6ee89f4919770a014fd92cb54575936dd1789"
+  },
+  "hopper-indoor-poster": {
+    "file": "assets/images/projects/hopper-indoor-poster.jpg",
+    "size_bytes": 33419,
+    "sha256": "53b8cf3ce247385f62865021505e8c4f564cbe04362be7498195e6c7f1fe7d84"
   }
 }
