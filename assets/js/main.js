@@ -1,123 +1,168 @@
 (() => {
   "use strict";
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const videos = [...document.querySelectorAll(".preview-video")];
+  const youtube = document.querySelector("[data-youtube-preview]");
+  const mediaToggle = document.querySelector("[data-media-toggle]");
+  let paused = motion.matches;
+  let player = null;
+  let playerReady = false;
+  let apiRequested = false;
+  let youtubeUnavailable = false;
+  let youtubeVisible = false;
 
-  const header = document.querySelector("[data-header]");
-  const menuToggle = document.querySelector("[data-menu-toggle]");
-  const navigation = document.querySelector("[data-navigation]");
-  const navLinks = [...document.querySelectorAll("[data-nav-link]")];
-  const sections = [...document.querySelectorAll("[data-section]")];
-  const revealItems = [...document.querySelectorAll(".reveal")];
-  const mobileQuery = window.matchMedia("(max-width: 900px)");
-
-  const setHeaderState = () => {
-    header?.classList.toggle("is-scrolled", window.scrollY > 18);
-  };
-
-  const setMenu = (open, returnFocus = false) => {
-    if (!menuToggle || !navigation) return;
-
-    menuToggle.setAttribute("aria-expanded", String(open));
-    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-    navigation.dataset.open = String(open);
-    header?.classList.toggle("is-menu-open", open);
-    document.body.classList.toggle("menu-open", open && mobileQuery.matches);
-
-    if (open) {
-      window.requestAnimationFrame(() => navLinks[0]?.focus());
-    } else if (returnFocus) {
-      menuToggle.focus();
-    }
-  };
-
-  menuToggle?.addEventListener("click", () => {
-    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-    setMenu(!isOpen);
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!mobileQuery.matches || !navigation || !menuToggle) return;
-    if (menuToggle.getAttribute("aria-expanded") !== "true") return;
-    if (navigation.contains(event.target) || menuToggle.contains(event.target)) return;
-    setMenu(false);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
-      setMenu(false, true);
-    }
-  });
-
-  const closeMenuAtDesktop = (event) => {
-    if (!event.matches) setMenu(false);
-  };
-
-  if (typeof mobileQuery.addEventListener === "function") {
-    mobileQuery.addEventListener("change", closeMenuAtDesktop);
-  } else {
-    mobileQuery.addListener(closeMenuAtDesktop);
+  function command(func) {
+    if (playerReady && typeof player?.[func] === "function") player[func]();
   }
-
-  window.addEventListener("scroll", setHeaderState, { passive: true });
-  setHeaderState();
-
-  const setActiveLink = (sectionId) => {
-    const navigationId = sectionId === "platforms" ? "research" : sectionId;
-    navLinks.forEach((link) => {
-      const isActive = link.getAttribute("href") === `#${navigationId}`;
-      if (isActive) {
-        link.setAttribute("aria-current", "location");
-      } else {
-        link.removeAttribute("aria-current");
+  function mountYouTube() {
+    if (!youtube || player) return;
+    const showFallback = () => {
+      if (youtube.classList.contains("has-player")) return;
+      youtubeUnavailable = true;
+      const button = youtube.querySelector("[data-youtube-play]");
+      button.textContent = "Watch on YouTube ↗";
+      button.setAttribute("aria-label", "Watch the KAIST Humanoid video on YouTube");
+    };
+    if (!window.YT?.Player) {
+      if (apiRequested) return;
+      apiRequested = true;
+      window.onYouTubeIframeAPIReady = mountYouTube;
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      script.async = true;
+      script.addEventListener("error", showFallback);
+      document.head.append(script);
+      window.setTimeout(showFallback, 15000);
+      return;
+    }
+    const mount = document.createElement("div");
+    youtube.prepend(mount);
+    const clip = {videoId:youtube.dataset.videoId, startSeconds:Number(youtube.dataset.start), endSeconds:Number(youtube.dataset.end)};
+    player = new window.YT.Player(mount, {
+      host:"https://www.youtube-nocookie.com", videoId:clip.videoId,
+      playerVars:{autoplay:1, mute:1, controls:1, playsinline:1, rel:0, start:clip.startSeconds, end:clip.endSeconds, origin:location.origin},
+      events:{
+        onReady(event) {
+          playerReady = true;
+          event.target.getIframe().title = "KAIST Humanoid v0.7 — official DRCD Lab field-test preview";
+          event.target.mute();
+          if (!paused && youtubeVisible && !document.hidden) event.target.playVideo();
+        },
+        onStateChange(event) {
+          if (event.data === window.YT.PlayerState.PLAYING) {
+            youtubeUnavailable = false;
+            youtube.classList.add("has-player");
+          }
+          if (event.data === window.YT.PlayerState.ENDED && !paused && youtubeVisible) event.target.loadVideoById(clip);
+        },
+        onError() {
+          youtube.classList.remove("has-player");
+          showFallback();
+        }
       }
     });
-  };
-
-  if ("IntersectionObserver" in window && sections.length) {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible[0]?.target.id) setActiveLink(visible[0].target.id);
-      },
-      { rootMargin: "-28% 0px -58% 0px", threshold: [0, 0.1, 0.25] }
-    );
-
-    sections.forEach((section) => sectionObserver.observe(section));
-  } else {
-    setActiveLink("home");
+    window.setTimeout(showFallback, 15000);
   }
-
-  if ("IntersectionObserver" in window && revealItems.length) {
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-    );
-
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index % 3, 2) * 55}ms`;
-      revealObserver.observe(item);
-    });
-  } else {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
+  function syncVideo(video) {
+    if (paused || document.hidden || video.dataset.visible !== "true") video.pause();
+    else video.play()?.catch(() => {});
   }
-
-  const profileImage = document.querySelector(".profile-image-frame img");
-  profileImage?.addEventListener("error", () => {
-    profileImage.hidden = true;
+  function syncAll() {
+    videos.forEach(syncVideo);
+    if (!paused && !document.hidden && youtubeVisible) { mountYouTube(); command("playVideo"); }
+    else command("pauseVideo");
+    mediaToggle.textContent = paused ? "Play previews" : "Pause previews";
+    mediaToggle.setAttribute("aria-pressed", String(paused));
+  }
+  videos.forEach(video => {
+    video.muted = true;
+    if (motion.matches) { video.removeAttribute("autoplay"); video.pause(); }
+    video.addEventListener("error", () => {
+      video.hidden = true;
+      const poster = document.createElement("img");
+      poster.src = video.poster;
+      poster.alt = video.getAttribute("aria-label") || "Recorded robot experiment";
+      video.parentElement.prepend(poster);
+    }, {once:true});
   });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.target === youtube) { youtubeVisible = entry.isIntersecting; syncAll(); }
+      else { entry.target.dataset.visible = String(entry.isIntersecting); syncVideo(entry.target); }
+    }), {threshold:.25});
+    videos.forEach(video => observer.observe(video));
+    if (youtube) observer.observe(youtube);
+  } else {
+    videos.forEach(video => { video.dataset.visible = "true"; syncVideo(video); });
+  }
+  document.querySelector("[data-youtube-play]")?.addEventListener("click", () => {
+    if (youtubeUnavailable) {
+      window.open("https://www.youtube.com/watch?v=" + youtube.dataset.videoId, "_blank", "noopener,noreferrer");
+      return;
+    }
+    youtubeVisible = true;
+    paused = false;
+    mountYouTube();
+    syncAll();
+  });
+  mediaToggle?.addEventListener("click", () => { paused = !paused; syncAll(); });
+  motion.addEventListener("change", event => { paused = event.matches; syncAll(); });
+  document.addEventListener("visibilitychange", syncAll);
+  syncAll();
 
-  const year = document.querySelector("[data-year]");
-  if (year) year.textContent = String(new Date().getFullYear());
+  const filters = [...document.querySelectorAll("[data-filter]")];
+  const projects = [...document.querySelectorAll("[data-categories]")];
+  document.querySelector(".research-filter").hidden = false;
+  function filterProjects(category) {
+    filters.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.filter === category)));
+    let count = 0;
+    projects.forEach(project => {
+      project.hidden = category !== "all" && !project.dataset.categories.split(" ").includes(category);
+      if (!project.hidden) count += 1;
+    });
+    document.querySelector("[data-filter-status]").textContent = count + (count === 1 ? " project shown." : " projects shown.");
+  }
+  filters.forEach(button => button.addEventListener("click", () => filterProjects(button.dataset.filter)));
+  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => {
+    if (projects.some(project => "#" + project.id === link.hash)) filterProjects("all");
+  }));
+  const cv = document.querySelector("#cv");
+  function revealHash() {
+    if (location.hash === "#cv") cv.open = true;
+    if (location.hash === "#publications") filterProjects("all");
+  }
+  document.querySelector("[data-open-cv]").addEventListener("click", () => { cv.open = true; });
+  window.addEventListener("hashchange", revealHash);
+  revealHash();
+
+  const bibToggle = document.querySelector("[data-bib-toggle]");
+  const bibPanel = document.querySelector("#gcs-bibtex");
+  bibToggle.addEventListener("click", () => {
+    const open = bibToggle.getAttribute("aria-expanded") !== "true";
+    bibToggle.setAttribute("aria-expanded", String(open));
+    bibPanel.hidden = !open;
+  });
+  document.querySelector("[data-copy-bib]").addEventListener("click", async event => {
+    const button = event.currentTarget;
+    const code = document.querySelector("#citation-text");
+    const status = document.querySelector("[data-copy-status]");
+    try {
+      await navigator.clipboard.writeText(code.textContent.trim());
+      button.textContent = "Copied";
+      status.textContent = "BibTeX citation copied.";
+    } catch {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(code);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      if (document.execCommand("copy")) {
+        button.textContent = "Copied";
+        status.textContent = "BibTeX citation copied.";
+      } else {
+        status.textContent = "Citation selected. Use your browser’s copy command.";
+      }
+    }
+  });
+  document.querySelector("[data-year]").textContent = new Date().getFullYear();
 })();

@@ -1,0 +1,49 @@
+{
+  "profile": {
+    "source": "https://avatars.githubusercontent.com/u/125255496?v=4",
+    "description": "Public GitHub profile photograph"
+  },
+  "gcs": {
+    "source": "https://github.com/HYUNSEOKKKKKK/Humanoid_Footstep_Planning_GCS/tree/main/website/dist/assets",
+    "description": "Original published 16-second TORO teaser and poster; copied unchanged"
+  },
+  "piper": {
+    "source": "https://github.com/HYUNSEOKKKKKK/Piper_manipulation/blob/main/assets/feed_auto_run.gif",
+    "description": "Project-owned continuous four-transfer run. GIF transcoded to muted H.264; same frames and 4x playback."
+  },
+  "hopper": {
+    "source": "https://github.com/HYUNSEOKKKKKK/Hopper_Nature/blob/withDHALOneLeg/assets/demos/outdoor-trial.gif",
+    "description": "Project-owned outdoor trial, source interval 2–10 seconds at 1x. Cropped source GIF transcoded to H.264, with one bottom padding pixel for even dimensions. Nearby operator is visible. Full recording, including recovery, remains linked from the repository."
+  },
+  "kaist_humanoid": {
+    "source": "https://www.youtube.com/watch?v=9qZcTMARvpk",
+    "description": "Official KAIST DRCD Lab v0.7 field-test demo, embedded from YouTube with preview interval 20–34 seconds. The existing KAIST lab-platform photograph is used as a poster."
+  },
+  "marvel": {
+    "source": "Existing portfolio assets/images/robots/marvel-adaptive-contact.jpg and marvel-climbing.jpg",
+    "description": "Existing adaptive-foot and robot-experiment photographs retained."
+  },
+  "design": {
+    "reference": "https://xuxin.ai/",
+    "description": "Original implementation following the reference’s light academic layout, serif heading, rounded navigation, 2-column highlights and compact research rows."
+  },
+  "about": {
+    "source": "Existing portfolio CV section and public GitHub profile",
+    "description": "Education and DLR experience retained from the existing site. No CV PDF was present; CV opens the on-page background section."
+  },
+  "piper-preview": {
+    "file": "assets/media/piper-preview.mp4",
+    "size_bytes": 705397,
+    "sha256": "b05f575ed4de4f4b6f7ed111c9582a48fb4f59b874dea924e3ecc6bdca8552b0"
+  },
+  "hopper-preview": {
+    "file": "assets/media/hopper-preview.mp4",
+    "size_bytes": 742702,
+    "sha256": "71754f0b9b8780fb538046b80cef45d0be9843e561db60c194e9a0f96950a7e3"
+  },
+  "gcs-preview": {
+    "file": "assets/media/gcs-preview.mp4",
+    "size_bytes": 1414448,
+    "sha256": "22943f2c31a41f3c194d59eef7484b68ba1e591c327be9314605931a99cbff54"
+  }
+}

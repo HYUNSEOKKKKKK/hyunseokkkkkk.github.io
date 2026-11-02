@@ -1,112 +1,57 @@
-# Hyunseok Kim - Academic Robotics Portfolio
+# Hyunseok Kim — Robotics portfolio
 
-Static personal research website for Hyunseok Kim, Ph.D. Candidate in Mechanical Engineering at KAIST and a member of the Dynamic Robot Control & Design Lab.
+Live site: https://hyunseokkkkkk.github.io/
 
-Live URL: [https://hyunseokkkkkk.github.io](https://hyunseokkkkkk.github.io)
+A static academic homepage with a short About, four recorded highlights, news,
+and a filterable list of five research projects. The layout follows the light,
+compact academic format of [Xuxin Cheng's homepage](https://xuxin.ai/).
+All research descriptions, photos, and recordings refer to Hyunseok's projects
+or the explicitly labelled DRCD Lab collaboration.
 
-## Structure
+## Edit the homepage
 
-```text
-.
-|-- index.html                    # All homepage content and metadata
-|-- assets/
-|   |-- css/styles.css            # Responsive layout and visual system
-|   |-- js/main.js                # Navigation, active links, and reveal behavior
-|   |-- images/robots/            # Optimized TORO, MARVEL, and KAIST lab media
-|   |-- images/                   # Favicon, profile, and future media
-|   `-- cv/                       # CV PDF destination
-|-- projects/                     # Future dedicated project pages
-|-- .github/workflows/pages.yml   # GitHub Pages deployment
-|-- .nojekyll                     # Disables Jekyll processing
-|-- robots.txt
-`-- sitemap.xml
-```
+- `index.html`: biography, education and experience, highlights, news, project
+  descriptions, resource links, and the author-supplied BibTeX.
+- `assets/css/styles.css`: responsive layout, typography, and visual design.
+- `assets/js/main.js`: project filters, CV disclosure, citation copying, and
+  visibility-aware video previews.
+- `assets/media/sources.json`: recording provenance and preview hashes.
 
-The site has no framework, package manager, build step, or third-party JavaScript dependency.
+No build tools or frontend dependencies are needed. Open `index.html` or serve
+the repository with `python3 -m http.server 8000`. GitHub Pages deploys the root
+through `.github/workflows/pages.yml` whenever `main` changes.
 
-## Update robot platforms and images
+## Content and media
 
-The `#platforms` section in `index.html` separates direct research platforms from platforms encountered indirectly in the DRCD Lab environment.
+The featured projects are GCS footstep planning, PiPER manipulation, Hopper,
+KAIST Humanoid, and MARVEL's adaptive magnetic foot. Four video highlights
+appear above the detailed research rows. All abstract decorative diagrams have
+been removed.
 
-1. Add public, web-optimized media under `assets/images/robots/`.
-2. Update the matching `<img>` path, intrinsic `width` and `height`, and descriptive `alt` text in `index.html`.
-3. Keep TORO and MARVEL labeled as direct research platforms unless that relationship changes.
-4. Keep KAIST Humanoid and HOUND labeled as lab platforms / indirect involvement.
-5. Update the hero preload and Open Graph image when changing the primary hero image.
+- GCS uses the existing published TORO teaser, unchanged.
+- PiPER uses the project's continuous four-transfer GIF, transcoded to muted
+  H.264 with the original 4× playback. Boxes are hand-fed between transfers.
+- Hopper uses the published outdoor trial excerpt at 1×, with an operator
+  visible. The full recording and recovery remain accessible in its repository.
+- KAIST Humanoid embeds the official DRCD Lab v0.7 field-test video, with a
+  20–34 second preview segment. The player is revealed only after playback
+  starts, so the lab photograph and direct YouTube link remain available when
+  an embed cannot play.
+- MARVEL uses the existing adaptive-foot and robot-experiment photographs.
 
-Do not commit raw experimental datasets, internal slide decks, personal documents, or media that has not been cleared for public release.
+Previews pause off screen and when the tab is hidden. The global preview toggle
+and the visitor's reduced-motion preference are respected. Image posters and
+links to the original resources remain available without autoplay.
 
-## Run locally
+## Biography and citations
 
-You can open `index.html` directly, or serve the directory locally for the closest match to GitHub Pages:
+The About text and expandable background retain the education and DLR research
+experience from the previous homepage. The CV link opens this on-page background;
+no downloadable CV PDF was present in the source.
 
-```bash
-python -m http.server 8000
-```
+The GCS citation is the exact BibTeX supplied by the author, with citation key
+`kim2026humanoid` and publisher `IEEE`. Keep it synchronized with the paper
+project page and repository when publication metadata changes.
 
-Then open `http://localhost:8000`.
-
-## Add a publication
-
-1. Open `index.html` and find the `PUBLICATION ITEM` comment.
-2. Duplicate the `<article class="publication-item">` block.
-3. Replace the title and verified author, venue, year, and status details.
-4. Replace a disabled resource button with an `<a>` only after its destination exists.
-5. Keep Hyunseok Kim inside `<strong>` in the author list.
-
-Do not add a venue, acceptance status, DOI, author, or resource URL until it is verified.
-
-## Add a project
-
-1. Open `index.html` and find the `PROJECT ITEM` comment or the `.project-grid` block.
-2. Duplicate the appropriate project article.
-3. Add media under `assets/images/projects/`.
-4. Replace the matching `.project-media` or `.project-visual` placeholder with an `<img>`, `<video>`, or `<picture>` element.
-5. Add resource links only when their destinations exist.
-
-Use `projects/project-slug/index.html` for a dedicated project page. The `projects/README.md` file records the expected path convention.
-
-### Private research repositories
-
-Several project descriptions are derived from private research implementations. Keep those repositories private unless they have been reviewed for release. On the public website:
-
-1. Describe only research goals, methods, and systems that are safe to disclose.
-2. Do not link visitors to a private repository.
-3. Keep the code control disabled or label it as private until a public release exists.
-4. Review images, videos, datasets, benchmark numbers, and paper status before publishing them.
-
-## Replace the profile image
-
-The About section currently uses the public GitHub avatar URL. To use a local portrait:
-
-1. Add the image as `assets/images/profile.jpg`.
-2. In `index.html`, replace the `src` in `.profile-image-frame img` with `assets/images/profile.jpg`.
-3. Keep the image square or use a portrait with enough room for a square crop.
-
-## Add the CV
-
-The web CV is maintained directly in the `#cv` section of `index.html`. Update its experience and education entries whenever dates or positions change.
-
-1. Add the updated PDF at `assets/cv/Hyunseok_Kim_CV.pdf`.
-2. Replace the disabled button in the `#cv` section with the link shown in `assets/cv/README.md`.
-3. Confirm the PDF contains no personal information that should remain private before publishing it.
-
-Until the PDF exists, the website deliberately shows a disabled CV button and does not create a broken link.
-
-## Add social links
-
-In the `#contact` section of `index.html`, the Google Scholar, LinkedIn, and YouTube rows are marked `contact-placeholder`. Replace each known placeholder with an anchor using the same structure as the GitHub row:
-
-```html
-<a href="VERIFIED_URL" target="_blank" rel="noreferrer">
-  <span>Service name</span><span aria-hidden="true">&#8599;</span>
-</a>
-```
-
-## GitHub Pages deployment
-
-The workflow in `.github/workflows/pages.yml` deploys the repository root whenever a commit reaches `main`. It can also be run manually from the Actions tab.
-
-For the first deployment, confirm **Settings > Pages > Source** is set to **GitHub Actions**. After that, every push to `main` publishes the current static files to `https://hyunseokkkkkk.github.io`.
-
-The `.nojekyll` file ensures GitHub Pages serves the repository as plain static files.
+Only verified public repositories are linked. KAIST Humanoid is labelled as a
+DRCD Lab collaborative project; no private humanoid code is published here.
