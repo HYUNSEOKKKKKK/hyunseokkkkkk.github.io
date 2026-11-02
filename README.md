@@ -24,21 +24,25 @@ through `.github/workflows/pages.yml` whenever `main` changes.
 ## Content and media
 
 The featured projects are GCS footstep planning, PiPER manipulation, Hopper,
-KAIST Humanoid, and MARVEL's adaptive magnetic foot. Six video highlights
+KAIST Humanoid, and MARVEL's adaptive magnetic foot. Five video highlights
 appear above the detailed research rows. All abstract decorative diagrams have
 been removed.
 
 - GCS uses the existing published TORO teaser, unchanged.
 - PiPER uses the project's continuous four-transfer GIF, transcoded to muted
   H.264 with the original 4× playback. Boxes are hand-fed between transfers.
-- Hopper uses the published outdoor trial excerpt at 1×, with an operator
-  visible. The full recording and recovery remain accessible in its repository.
-- KAIST Humanoid embeds the official DRCD Lab v0.7 field-test video, with a
-  20–34 second preview segment. The player is revealed only after playback
-  starts, so the lab photograph and direct YouTube link remain available when
-  an embed cannot play.
-- MARVEL includes the official DRCD Lab climbing video (2022), with a 10–26 second preview. The adaptive-foot project retains its own photographs; the official lab demo is labelled separately.
-- A second Hopper highlight shows the indoor trial, source interval 20–30 seconds at 1×, with a rolling test frame and nearby operators.
+- Hopper uses one continuous preview: outdoor trial source interval 2–10 seconds,
+  then indoor trial source interval 20–30 seconds, both at 1×. The 18-second
+  sequence loops as a single video. Operators and the indoor rolling test frame
+  remain visible. Full recordings are accessible in the project repository.
+- KAIST Humanoid embeds the official DRCD Lab v0.9 whole-body locomanipulation
+  video, with a 20–34 second preview segment. The player is revealed only after
+  playback starts, so the lab photograph and direct YouTube link remain available
+  when an embed cannot play.
+- MARVEL uses the author's own MME-DAM adaptive-contact experiment from the
+  provided presentation (slide 59). The 1–21 second excerpt includes stepped
+  steel and curved-surface adaptation at 1×. This shows the foot mechanism,
+  rather than the full robot climbing. No MARVEL YouTube embed or link is used.
 
 Previews pause off screen and when the tab is hidden. The global preview toggle
 and the visitor's reduced-motion preference are respected. Image posters and

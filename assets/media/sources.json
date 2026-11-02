@@ -13,15 +13,15 @@
   },
   "hopper": {
     "source": "https://github.com/HYUNSEOKKKKKK/Hopper_Nature/blob/withDHALOneLeg/assets/demos/outdoor-trial.gif",
-    "description": "Project-owned outdoor trial, source interval 2–10 seconds at 1x. Cropped source GIF transcoded to H.264, with one bottom padding pixel for even dimensions. Nearby operator is visible. Full recording, including recovery, remains linked from the repository."
+    "description": "Project-owned outdoor trial, source interval 2–10 seconds at 1×, followed by the indoor-trial source interval 20–30 seconds at 1×. Concatenated into one 18-second, muted H.264 preview at 640×360 and 30 fps. Outdoor operators and indoor rolling test frame remain visible; full recordings remain linked from the repository."
   },
   "kaist_humanoid": {
-    "source": "https://www.youtube.com/watch?v=9qZcTMARvpk",
-    "description": "Official KAIST DRCD Lab v0.7 field-test demo, embedded from YouTube with preview interval 20–34 seconds. The existing KAIST lab-platform photograph is used as a poster."
+    "source": "https://www.youtube.com/watch?v=HBFZ2a0Dj9s",
+    "description": "Official KAIST DRCD Lab Whole-Body Locomanipulation with KAIST Humanoid v0.9 video, released October 19, 2026. Embedded from YouTube with preview interval 20–34 seconds. Lab-platform photograph retained as poster and full video linked in the highlight and research row."
   },
   "marvel": {
     "source": "Existing portfolio assets/images/robots/marvel-adaptive-contact.jpg and marvel-climbing.jpg",
-    "description": "Existing adaptive-foot and robot-experiment photographs retained."
+    "description": "Existing adaptive-foot and robot-experiment photographs retained. The highlight now uses the author-provided MME-DAM adaptive-contact video, not the official MARVEL climbing video."
   },
   "design": {
     "reference": "https://xuxin.ai/",
@@ -46,11 +46,6 @@
     "size_bytes": 1414448,
     "sha256": "22943f2c31a41f3c194d59eef7484b68ba1e591c327be9314605931a99cbff54"
   },
-  "marvel_climbing_video": {
-    "source": "https://www.youtube.com/watch?v=sxOgYz13t5I",
-    "source_confirmation": "https://www.dynamicrobot.kaist.ac.kr/news",
-    "description": "Official DRCD Lab video for Agile and versatile climbing on ferromagnetic surfaces with a quadrupedal robot (Science Robotics, 2022). YouTube preview interval 10–26 seconds. Labelled as a lab demonstration, distinct from the author’s adaptive MME-DAM foot experiment."
-  },
   "hopper_indoor": {
     "source": "https://github.com/HYUNSEOKKKKKK/Hopper_Nature/blob/withDHALOneLeg/assets/demos/indoor-trial.mp4",
     "description": "Recorded indoor trial with a rolling test frame and nearby operators. Original 20–30 second interval, 1× speed, muted H.264 at 640-pixel width. Poster extracted at preview time 3 seconds."
@@ -64,5 +59,25 @@
     "file": "assets/images/projects/hopper-indoor-poster.jpg",
     "size_bytes": 33419,
     "sha256": "53b8cf3ce247385f62865021505e8c4f564cbe04362be7498195e6c7f1fe7d84"
+  },
+  "marvel_foot_video": {
+    "source": "Author-provided MME-DAM presentation, slide 59, embedded media5.mp4",
+    "description": "Original adaptive-contact demonstration on stepped steel and curved surfaces, distinct from a full-robot climbing trial. Source interval 1–21 seconds, 1× playback, muted H.264 at 640×360 and 30 fps. No MARVEL YouTube embed or link.",
+    "source_sha256": "69a2d95ce06951fc2a5d0595676614601d592955c937b63d5f901e67396c2bae"
+  },
+  "hopper-combined-preview": {
+    "file": "assets/media/hopper-combined-preview.mp4",
+    "size_bytes": 845397,
+    "sha256": "4e896cf1745c04f01e1d491e6110884961a72c2afe271a4b9b1cc74dbd9f3c5c"
+  },
+  "marvel-foot-preview": {
+    "file": "assets/media/marvel-foot-preview.mp4",
+    "size_bytes": 753732,
+    "sha256": "32a64e8a66c77822505df416283fdb6623153b71dfd850b34cc54f494a8525da"
+  },
+  "marvel-foot-poster": {
+    "file": "assets/images/projects/marvel-foot-poster.jpg",
+    "size_bytes": 29615,
+    "sha256": "0711aa4798acb686df13f841ed3be995b34b97eae87eb6be41bb55a5b5d726e2"
   }
 }
