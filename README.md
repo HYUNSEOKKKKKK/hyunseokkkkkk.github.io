@@ -39,10 +39,12 @@ been removed.
   video, with a 20–34 second preview segment. The player is revealed only after
   playback starts, so the lab photograph and direct YouTube link remain available
   when an embed cannot play.
-- MARVEL uses the author's own MME-DAM adaptive-contact experiment from the
-  provided presentation (slide 59). The 1–21 second excerpt includes stepped
-  steel and curved-surface adaptation at 1×. This shows the foot mechanism,
-  rather than the full robot climbing. No MARVEL YouTube embed or link is used.
+- MARVEL uses the two author-uploaded climbing experiment videos in their
+  requested order: `미디어3.mp4`, then `미디어1.mp4`. Both complete videos are
+  concatenated without trimming or changing playback speed into one 117.87-second
+  muted preview at 640×360 and 30 fps. The sequence loops after the second clip.
+  The previous tabletop adaptive-foot preview and its poster have been removed.
+  No MARVEL YouTube embed or link is used.
 
 Previews pause off screen and when the tab is hidden. The global preview toggle
 and the visitor's reduced-motion preference are respected. Image posters and
